@@ -1,0 +1,9 @@
+name: 'Gutenberg AI Tools'
+description: 'This module exposes a Gutenberg block for creating Generative AI prompt/response'
+package: 'Gutenberg'
+type: 'module'
+core_version_requirement: ^9.5 || ^10
+configure: 'gutenberg_ai_tools.settings'
+dependencies:
+  - 'drupal:openai'
+  - 'drupal:gutenberg'

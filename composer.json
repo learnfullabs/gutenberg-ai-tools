@@ -1,0 +1,27 @@
+{
+    "name": "learnfullabs/gutenberg-ai-tools",
+    "type": "drupal-custom-module",
+    "keywords": ["Drupal"],
+    "description": "This module exposes a Gutenberg block for creating Generative AI prompt/response",
+    "homepage": "https://github.com/learnfullabs/gutenberg-ai-tools",
+    "authors": [
+      {
+        "name": "Daniel Rodriguez",
+        "homepage": "https://www.drupal.org/u/danrod",
+        "role": "Maintainer"
+      }
+    ],
+    "support": {
+        "issues": "https://github.com/learnfullabs/gutenberg-ai-tools/issues",
+        "source": "https://github.com/learnfullabs/gutenberg-ai-tools"
+    },
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev",
+    "require": {
+      "drupal/core": "^10"
+    },
+    "require-dev": {
+      "drupal/gutenberg": "^3.0",
+      "drupal/openai": "^1.0@beta"
+    }
+  }
