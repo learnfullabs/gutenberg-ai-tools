@@ -1,0 +1,19 @@
+# Libraries to be added to the node/entity edit form when using Gutenberg editor.
+libraries-edit:
+  - gutenberg_ai_tools/blocks
+# Libraries to be added to the node/entity view.
+libraries-view:
+  - gutenberg_ai_tools/blocks
+# Blocks which can be rendered server side using Twig templates.
+dynamic-blocks:
+  gutenberg-ai-tools/ai-block: {}
+
+# Add custom blocks to the following section.
+# The blocks defined here can be enabled or disabled for each content type.
+custom-blocks:
+  categories:
+    - reference: media # The category where the block will be added.
+      name: Media
+      blocks:
+        - id: gutenberg-ai-tools/ai-block
+          name: AI Block
