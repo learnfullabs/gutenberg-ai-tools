@@ -7,16 +7,7 @@
     "category": "design",
     "icon": "businessman",
     "attributes": {
-      "imageUrl": {
-        "type": "string"
-      },
-      "imageAlt": {
-        "type": "string"
-      },
-      "title": {
-        "type": "string"
-      },
-      "subhead": {
+      "question": {
         "type": "string"
       },
       "metadata": {
@@ -36,10 +27,6 @@
         "name": "default",
         "label": "Default",
         "isDefault": true
-      },
-      {
-        "name": "image-right",
-        "label": "Right aligned image"
       }
     ]
   }
