@@ -2,8 +2,8 @@
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "apiVersion": 2,
     "name": "gutenberg-ai-tools/ai-block",
-    "title": "AIBlock",
-    "description": "A block that displays a card with a picture and text.",
+    "title": "AI Block",
+    "description": "A block that displays content pulled from OpenAI based on the question sent to it.",
     "textdomain": "default",
     "category": "design",
     "icon": "businessman",
@@ -60,17 +60,5 @@
       }
     ],
     "variations": [
-      {
-        "name": "pet",
-        "title": "Pet Card",
-        "description": "A card for a pet.",
-        "icon": "pets",
-        "attributes": {
-          "className": "is-style-pet", 
-          "imageUrl": "https://images.unsplash.com/photo-1524698604136-5a02fb1f7ec9?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
-          "imageAlt": "Photo by Shane Guymon on Unsplash"
-        },
-        "isActive": [ "className" ]
-      }
     ]
   }
