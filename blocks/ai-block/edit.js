@@ -25,7 +25,7 @@ import { t } from "drupal";
 const ALLOWED_BLOCKS = ["core/heading", "core/paragraph", "core/quote"];
 
 function Edit({ attributes, setAttributes }) {
-  const { imageUrl, imageAlt, imageUuid, title, subhead, metadata } = attributes;
+  const { imageUrl, imageAlt, imageUuid, title, metadata } = attributes;
 
   function onSelectMedia(media) {
     setAttributes({
@@ -95,15 +95,9 @@ function Edit({ attributes, setAttributes }) {
       <div>
         <RichText
           tagName="h2"
-          placeholder={t("Title")}
+          placeholder={t("Question for OpenAI")}
           value={title}
           onChange={(value) => setAttributes({ title: value })}
-        />
-        <RichText
-          tagName="p"
-          placeholder={t("Subhead")}
-          value={subhead}
-          onChange={(value) => setAttributes({ subhead: value })}
         />
         <div>
           <InnerBlocks allowedBlocks={ALLOWED_BLOCKS} />

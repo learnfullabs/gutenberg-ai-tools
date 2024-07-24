@@ -1,7 +1,7 @@
 import { useBlockProps, InnerBlocks } from "@wordpress/block-editor";
 
 function Save({ attributes }) {
-  const { imageUrl, imageUuid, imageAlt, title, subhead } = attributes;
+  const { imageUrl, imageUuid, imageAlt, title } = attributes;
 
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -14,7 +14,6 @@ function Save({ attributes }) {
       />
       <div>
         <h2>{title}</h2>
-        <p>{subhead}</p>
         <div>
           <InnerBlocks.Content />
         </div>

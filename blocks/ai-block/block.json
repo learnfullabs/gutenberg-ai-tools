@@ -31,11 +31,6 @@
         "source": "text",
         "selector": "h2"
       },
-      "subhead": {
-        "type": "string",
-        "source": "text",
-        "selector": "h2 + p"
-      },
       "metadata": {
         "type": "string"
       }
