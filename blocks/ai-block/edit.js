@@ -38,8 +38,8 @@ function Edit({ attributes, setAttributes }) {
           </PanelRow>
           <PanelRow>
             <TextareaControl
-              label={t('Metadata information')}
-              help={t('Add some metadata information')}
+              label={t('OpenAI prompt')}
+              help={t('Input the question for OpenAI here')}
               value={metadata}
               onChange={(value) => setAttributes({ metadata: value })}
             />
@@ -49,7 +49,7 @@ function Edit({ attributes, setAttributes }) {
       <div>
         <RichText
           tagName="h2"
-          placeholder={t("Question for OpenAI")}
+          placeholder={t("Block Title")}
           value={title}
           onChange={(value) => setAttributes({ title: value })}
         />

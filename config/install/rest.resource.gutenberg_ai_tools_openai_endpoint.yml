@@ -1,0 +1,10 @@
+id: gutenberg_ai_tools_openai_endpoint
+granularity: resource
+configuration:
+  methods:
+    - POST
+  formats:
+    - json
+  authentication:
+    - basic_auth
+    - cookie
