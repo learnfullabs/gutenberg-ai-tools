@@ -25,7 +25,7 @@ import { t } from "drupal";
 const ALLOWED_BLOCKS = ["core/heading", "core/paragraph", "core/quote"];
 
 function Edit({ attributes, setAttributes }) {
-  const { title, metadata } = attributes;
+  const { title, openai_prompt } = attributes;
 
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -40,8 +40,8 @@ function Edit({ attributes, setAttributes }) {
             <TextareaControl
               label={t('OpenAI prompt')}
               help={t('Input the question for OpenAI here')}
-              value={metadata}
-              onChange={(value) => setAttributes({ metadata: value })}
+              value={openai_prompt}
+              onChange={(value) => setAttributes({ openai_prompt: value })}
             />
           </PanelRow>
         </PanelBody>

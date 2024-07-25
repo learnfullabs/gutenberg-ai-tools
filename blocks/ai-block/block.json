@@ -13,7 +13,7 @@
         "source": "text",
         "selector": "h2"
       },
-      "metadata": {
+      "openai_prompt": {
         "type": "string"
       }
     },
