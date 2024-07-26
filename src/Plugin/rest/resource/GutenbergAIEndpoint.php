@@ -16,6 +16,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Drupal\rest\ModifiedResourceResponse;
 use Drupal\Core\Database\Connection;
+use Drupal\openai\OpenAIApi;
 
 /**
  * Provides a Save Events User Endpoint
@@ -46,11 +47,11 @@ class GutenbergAIEndpoint extends ResourceBase {
   protected $entityTypeManager;
  
   /**
-   * The database connection.
+   * The OpenAI API wrapper.
    *
-   * @var \Drupal\Core\Database\Connection
+   * @var \Drupal\openai\OpenAIApi
    */
-  protected $database;
+  protected $api;
 
   /**
    * Constructs a Drupal\rest\Plugin\ResourceBase object.
@@ -69,14 +70,14 @@ class GutenbergAIEndpoint extends ResourceBase {
    *   A current user instance.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
-   * @param \Drupal\Core\Database\Connection $database
-   *  The database connection.
+   * @param \Drupal\openai\OpenAIApi $api
+   *   The OpenAI API wrapper.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, array $serializer_formats, LoggerInterface $logger, AccountProxyInterface $current_user, EntityTypeManagerInterface $entity_type_manager, Connection $database) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, array $serializer_formats, LoggerInterface $logger, AccountProxyInterface $current_user, EntityTypeManagerInterface $entity_type_manager, OpenAIApi $api) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger);
     $this->currentUser = $current_user;
     $this->entityTypeManager = $entity_type_manager;
-    $this->database = $database;
+    $this->api = $api;
   }
 
   /**
@@ -91,7 +92,7 @@ class GutenbergAIEndpoint extends ResourceBase {
       $container->get('logger.factory')->get('custom_rest'),
       $container->get('current_user'),
       $container->get('entity_type.manager'),
-      $container->get('database')
+      $container->get('openai.api')
     );
   }
 
@@ -116,7 +117,16 @@ class GutenbergAIEndpoint extends ResourceBase {
       throw new BadRequestHttpException('Bad data format. Please make sure you have all data set in the request.');
     }
 
-    $response = new ResourceResponse("Event Data saved with success !");
+    $text = $data['openai_prompt'];
+    $model = "gpt-3.5-turbo";
+    $temperature = 0.4;
+    $max_tokens = 128;
+
+    $messages[] = ['role' => 'user', 'content' => trim($text)];
+
+    $result = $this->api->chat($model, $messages, $temperature, $max_tokens);
+
+    $response = new ResourceResponse($result);
 
     return $response;
   }
