@@ -4,19 +4,19 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-      "build": "wp-scripts build",
-      "dev": "wp-scripts start",
-      "test": "echo \"Error: no test specified\" && exit 1"
+        "build": "wp-scripts build",
+        "dev": "wp-scripts start",
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "",
     "license": "ISC",
     "devDependencies": {
-      "@wordpress/scripts": "^27.2.0"
+        "@wordpress/scripts": "^27.2.0"
     },
     "dependencies": {
-      "@wordpress/block-editor": "^12.19.1",
-      "@wordpress/blocks": "^12.28.1",
-      "@wordpress/components": "^26.0.1"
+        "@tanstack/react-query": "^5.51.15",
+        "@wordpress/block-editor": "^12.19.1",
+        "@wordpress/blocks": "^12.28.1",
+        "@wordpress/components": "^26.0.1"
     }
-  }
-  
+}
