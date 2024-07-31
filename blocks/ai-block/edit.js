@@ -59,6 +59,6 @@ function Edit({ attributes, setAttributes }) {
       </div>
     </div>
   );
-}
+};
 
 export default Edit;
