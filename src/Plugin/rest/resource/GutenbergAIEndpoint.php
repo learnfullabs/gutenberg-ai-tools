@@ -117,6 +117,7 @@ class GutenbergAIEndpoint extends ResourceBase {
       throw new BadRequestHttpException('Bad data format. Please make sure you have all data set in the request.');
     }
 
+    /* Set default options related to how ChatGPT generates its response. */
     $text = $data['openai_prompt'];
     $model = "gpt-3.5-turbo";
     $temperature = 0.4;
@@ -124,7 +125,12 @@ class GutenbergAIEndpoint extends ResourceBase {
 
     $messages[] = ['role' => 'user', 'content' => trim($text)];
 
-    $result = $this->api->chat($model, $messages, $temperature, $max_tokens);
+    try {
+      $result = $this->api->chat($model, $messages, $temperature, $max_tokens);
+    } catch (\Exception $e) {
+      watchdog_exception('gutenberg_ai_tools', $e);
+      throw new BadRequestHttpException('Error when invoking the OpenAPI service for getting the answer, please check the logs for more information.');
+    }
 
     $response = new ResourceResponse($result);
 
