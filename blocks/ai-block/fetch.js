@@ -1,34 +1,6 @@
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 
-function Fetch( { postId } ) {
-  const [ error, setError ]       = useState( null );
-  const [ mypost, setPost ]       = useState( null );
-  const [ isLoaded, setIsLoaded ] = useState( false );
-
-  useEffect( () => {
-      apiFetch( { path: `https://jsonplaceholder.typicode.com/posts/${postId}` } ).then(
-          ( result ) => {
-              setIsLoaded( true );
-              setPost( result );
-          },
-          ( error ) => {
-              setIsLoaded( true );
-              setError( error );
-          }
-      );
-  }, [ postId ] );
-
-  if ( error ) {
-      return <p>ERROR: { error.message }</p>;
-  } else if ( ! isLoaded ) {
-      return <p>Loading post { postId }..</p>;
-  } else if ( mypost && mypost.id ) {
-      return <h3>Post <i>{ mypost.title || '#' + mypost.id }</i> loaded!</h3>;
-  }
-  return <p>No such post</p>;
-};
-
 export default Fetch;
 
 /* const FetchOpenAIResponse = () => {

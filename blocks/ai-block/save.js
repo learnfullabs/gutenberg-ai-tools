@@ -11,7 +11,6 @@ function Save({ attributes, postId = 3 }) {
         <h2>{title}</h2>
         <div>
           <div>Question: {openai_prompt}</div>
-          <Fetch postId={postId} />
           <InnerBlocks.Content />
         </div>
       </div>
