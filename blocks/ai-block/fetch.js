@@ -8,7 +8,6 @@ class FetchOpenAIResponse extends React.Component  {
   render() {
     return (
       <div>
-        <p>{this.props.question}</p>
         <p>{this.props.answer}</p> 
       </div>
     )

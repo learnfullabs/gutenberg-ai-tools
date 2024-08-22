@@ -57,15 +57,15 @@ function Edit({ attributes, setAttributes }) {
         }
         
         return response.text();
-    }).then(data => 
-      setState({ token: data })
-    )
+    }).then(data => {
+      setState({ token: data });
+      console.log(state.token);
+      setAnswer(state.token);
+      setAttributes({ openai_answer: state.token });
+    })
     .catch(error => console.error(error));
     
     });
-
-    setAnswer(state.token);
-    setAttributes({ openai_answer: state.token })
   }
 
   return (
@@ -97,7 +97,7 @@ function Edit({ attributes, setAttributes }) {
       <div>
         <RichText
           tagName="h2"
-          placeholder={t("Block Title")}
+          placeholder={t("Start typing your question here, then hit tab:")}
           value={title}
           onChange={(value) => setAttributes({ title: value })}
           onBlur={handleBlur}
