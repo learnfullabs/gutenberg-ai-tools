@@ -1,8 +1,8 @@
 import { useBlockProps, InnerBlocks } from "@wordpress/block-editor";
-import Fetch from "./fetch"
+import FetchOpenAIResponse  from "./fetch"
 
-function Save({ attributes, postId = 3 }) {
-  const { title, openai_prompt } = attributes;
+function Save({ attributes }) {
+  const { title, metadata, openai_answer } = attributes;
 
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -10,7 +10,7 @@ function Save({ attributes, postId = 3 }) {
       <div>
         <h2>{title}</h2>
         <div>
-          <div>Question: {openai_prompt}</div>
+          <FetchOpenAIResponse question={title} answer={openai_answer} />
           <InnerBlocks.Content />
         </div>
       </div>

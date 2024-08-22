@@ -1,7 +1,43 @@
+import React from 'react';
 import { useState, useEffect } from '@wordpress/element';
-import apiFetch from '@wordpress/api-fetch';
 
-export default Fetch;
+/* const FetchOpenAIResponse  = (props) => {
+  const [photos, setPhotos] = useState([]);
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/photos/4')
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setPhotos(data);
+      });
+  }, []);
+  return (
+    <div>
+      <p>Question {props.question}</p>
+      <img key={photos.id} src={photos.url} alt={photos.title} width={100} />
+    </div>
+  );
+};
+export default FetchOpenAIResponse; */
+
+class FetchOpenAIResponse extends React.Component  {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        <p>Question: {this.props.question}</p>
+        <p>Answer:  {this.props.answer}</p>  
+      </div>
+    )
+  }
+}
+
+export default FetchOpenAIResponse; 
 
 /* const FetchOpenAIResponse = () => {
   const [data, setData] = useState(null);

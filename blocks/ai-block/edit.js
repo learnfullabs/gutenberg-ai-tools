@@ -1,3 +1,5 @@
+import React, { useState } from 'react'; 
+
 import {
     PanelBody,
     PanelRow,
@@ -18,6 +20,7 @@ import {
 
 // drupal import is set as external in webpack.config.js
 import { t } from "drupal";
+import FetchOpenAIResponse from "./fetch";
 // i18n package could be also used. It is a wrapper around Drupal.t.
 //   import { __ } from "@wordpress/i18n";
 //   __('Text to be translated');
@@ -25,7 +28,13 @@ import { t } from "drupal";
 const ALLOWED_BLOCKS = ["core/heading", "core/paragraph", "core/quote"];
 
 function Edit({ attributes, setAttributes }) {
-  const { title, openai_prompt } = attributes;
+  const { title, metadata, openai_answer } = attributes;
+  const [answer, setAnswer] = useState('');
+
+  const handleBlur = () => {
+    setAnswer(title + " - The Answer");
+    setAttributes({ openai_answer: title + " - The Answer" })
+  }
 
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -38,10 +47,17 @@ function Edit({ attributes, setAttributes }) {
           </PanelRow>
           <PanelRow>
             <TextareaControl
-              label={t('OpenAI prompt')}
-              help={t('Input the question for OpenAI here')}
-              value={openai_prompt}
-              onChange={(value) => setAttributes({ openai_prompt: value })}
+              label={t('Metadata')}
+              help={t('Block Metadata')}
+              value={metadata}
+              onChange={(value) => setAttributes({ metadata: value })}
+            />
+          </PanelRow>
+          <PanelRow>
+            <TextareaControl
+              label={t('OpenAI Answer')}
+              help={t('OpenAI Answer')}
+              value={openai_answer}
             />
           </PanelRow>
         </PanelBody>
@@ -52,8 +68,10 @@ function Edit({ attributes, setAttributes }) {
           placeholder={t("Block Title")}
           value={title}
           onChange={(value) => setAttributes({ title: value })}
+          onBlur={handleBlur}
         />
         <div>
+          <FetchOpenAIResponse question={title} answer={answer} />
           <InnerBlocks allowedBlocks={ALLOWED_BLOCKS} />
         </div>
       </div>
