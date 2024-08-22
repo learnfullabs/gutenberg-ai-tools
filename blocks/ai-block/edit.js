@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; 
+import React, { useState, useEffect } from 'react'; 
 
 import {
     PanelBody,
@@ -30,10 +30,17 @@ const ALLOWED_BLOCKS = ["core/heading", "core/paragraph", "core/quote"];
 function Edit({ attributes, setAttributes }) {
   const { title, metadata, openai_answer } = attributes;
   const [answer, setAnswer] = useState('');
+  const [state, setState] = useState({token: ''})
 
   const handleBlur = () => {
-    setAnswer(title + " - The Answer");
-    setAttributes({ openai_answer: title + " - The Answer" })
+    fetch('/session/token')
+    .then((response) => response.text())
+    .then(csrfToken => {
+        setState({ token: csrfToken });
+    });
+
+    setAnswer(title + state.token);
+    setAttributes({ openai_answer: title + state.token })
   }
 
   return (

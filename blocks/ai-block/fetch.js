@@ -15,23 +15,50 @@ import { useState, useEffect } from '@wordpress/element';
   }, []);
   return (
     <div>
-      <p>Question {props.question}</p>
-      <img key={photos.id} src={photos.url} alt={photos.title} width={100} />
+      <p>Question: {props.question}</p>
+      <p>Answer:  {props.answer}</p>  
     </div>
   );
 };
+
 export default FetchOpenAIResponse; */
+
+/* const FetchOpenAIResponse = (props) => {
+  const [photos, setPhotos] = useState([]);
+
+  return (
+    <div>
+      <p>Question {props.question}</p>
+      <p>Answer:  {props.answer}</p>  
+    </div>
+  );
+};
+
+export default FetchOpenAIResponse;*/
 
 class FetchOpenAIResponse extends React.Component  {
   constructor(props) {
     super(props);
   }
 
+  /*state = {
+    token: ''
+  }
+
+  componentDidMount() {
+    fetch('/session/token')
+    .then((response) => response.text())
+    .then(csrfToken => {
+        this.setState({ token: csrfToken });
+    });<p>Token: {this.state.token}</p>
+  } */
+
+
   render() {
     return (
       <div>
         <p>Question: {this.props.question}</p>
-        <p>Answer:  {this.props.answer}</p>  
+        <p>Answer:  {this.props.answer}</p> 
       </div>
     )
   }
