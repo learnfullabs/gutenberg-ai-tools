@@ -33,14 +33,39 @@ function Edit({ attributes, setAttributes }) {
   const [state, setState] = useState({token: ''})
 
   const handleBlur = () => {
+    let data = {
+      openai_prompt: title,
+    };
+
     fetch('/session/token')
-    .then((response) => response.text())
-    .then(csrfToken => {
-        setState({ token: csrfToken });
+    .then(response => {
+      const csrfToken = response.text();
+      console.log(csrfToken);
+      return csrfToken;
+    }).then((csrfToken) => {
+      fetch("/gutenberg-ai-tools/openai-rest?_format=json", {
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+          "X-Csrf-Token": csrfToken,
+        },
+        method: "POST"
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('HTTP error ' + response.status);
+        }
+        
+        return response.text();
+    }).then(data => 
+      setState({ token: data })
+    )
+    .catch(error => console.error(error));
+    
     });
 
-    setAnswer(title + state.token);
-    setAttributes({ openai_answer: title + state.token })
+    setAnswer(state.token);
+    setAttributes({ openai_answer: state.token })
   }
 
   return (
