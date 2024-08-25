@@ -29,20 +29,16 @@ const ALLOWED_BLOCKS = ["core/heading", "core/paragraph", "core/quote"];
 
 function Edit({ attributes, setAttributes }) {
   const { title, metadata, openai_answer } = attributes;
-  const [answer, setAnswer] = useState('');
   const [state, setState] = useState({token: ''})
 
-  const handleBlur = () => {
+  const handleClick = () => {
     let data = {
       openai_prompt: title,
     };
 
     fetch('/session/token')
-    .then(response => {
-      const csrfToken = response.text();
-      console.log(csrfToken);
-      return csrfToken;
-    }).then((csrfToken) => {
+    .then(response => response.text())
+    .then((csrfToken) => {
       fetch("/gutenberg-ai-tools/openai-rest?_format=json", {
         body: JSON.stringify(data),
         headers: {
@@ -51,17 +47,10 @@ function Edit({ attributes, setAttributes }) {
         },
         method: "POST"
       })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('HTTP error ' + response.status);
-        }
-        
-        return response.text();
-    }).then(data => {
+      .then(response => response.text())
+      .then(data => {
       setState({ token: data });
-      console.log(state.token);
-      setAnswer(state.token);
-      setAttributes({ openai_answer: state.token });
+      setAttributes({ openai_answer: data });
     })
     .catch(error => console.error(error));
     
@@ -97,13 +86,13 @@ function Edit({ attributes, setAttributes }) {
       <div>
         <RichText
           tagName="h2"
-          placeholder={t("Start typing your question here, then hit tab:")}
+          placeholder={t("Start typing your question here:")}
           value={title}
           onChange={(value) => setAttributes({ title: value })}
-          onBlur={handleBlur}
         />
+        <button onClick={handleClick}>{t('Get the answer')}</button>
         <div>
-          <FetchOpenAIResponse question={title} answer={answer} />
+          <FetchOpenAIResponse question={title} answer={openai_answer} />
           <InnerBlocks allowedBlocks={ALLOWED_BLOCKS} />
         </div>
       </div>
