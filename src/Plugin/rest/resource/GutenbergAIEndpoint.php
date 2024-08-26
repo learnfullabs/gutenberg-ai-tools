@@ -121,7 +121,7 @@ class GutenbergAIEndpoint extends ResourceBase {
     $text = $data['openai_prompt'];
     $model = "gpt-3.5-turbo";
     $temperature = 0.4;
-    $max_tokens = 128;
+    $max_tokens = 256;
 
     $messages[] = ['role' => 'user', 'content' => trim($text)];
 

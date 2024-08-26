@@ -49,8 +49,9 @@ function Edit({ attributes, setAttributes }) {
       })
       .then(response => response.text())
       .then(data => {
-      setState({ token: data });
-      setAttributes({ openai_answer: data });
+        let parsed_data = data.substring(1, data.length - 1);
+        setState({ token: parsed_data });
+        setAttributes({ openai_answer: parsed_data });
     })
     .catch(error => console.error(error));
     
@@ -79,6 +80,7 @@ function Edit({ attributes, setAttributes }) {
               label={t('OpenAI Answer')}
               help={t('OpenAI Answer')}
               value={openai_answer}
+              onChange={(value) => setAttributes({ openai_answer: value })}
             />
           </PanelRow>
         </PanelBody>
@@ -90,7 +92,7 @@ function Edit({ attributes, setAttributes }) {
           value={title}
           onChange={(value) => setAttributes({ title: value })}
         />
-        <button onClick={handleClick}>{t('Get the answer')}</button>
+        <button onClick={handleClick}>{t('Ask ChatGPT')}</button>
         <div>
           <FetchOpenAIResponse question={title} answer={openai_answer} />
           <InnerBlocks allowedBlocks={ALLOWED_BLOCKS} />
