@@ -21,6 +21,8 @@ import {
 // drupal import is set as external in webpack.config.js
 import { t } from "drupal";
 import FetchOpenAIResponse from "./fetch";
+import { parseOpenAIResponse } from "./parser";
+
 // i18n package could be also used. It is a wrapper around Drupal.t.
 //   import { __ } from "@wordpress/i18n";
 //   __('Text to be translated');
@@ -49,7 +51,7 @@ function Edit({ attributes, setAttributes }) {
       })
       .then(response => response.text())
       .then(data => {
-        let parsed_data = data.substring(1, data.length - 1);
+        let parsed_data = parseOpenAIResponse(data);
         setState({ token: parsed_data });
         setAttributes({ openai_answer: parsed_data });
     })

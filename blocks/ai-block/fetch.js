@@ -8,7 +8,7 @@ class FetchOpenAIResponse extends React.Component  {
   render() {
     return (
       <div>
-        <p>{this.props.answer}</p> 
+        <p dangerouslySetInnerHTML={{__html: this.props.answer}} /> 
       </div>
     )
   }

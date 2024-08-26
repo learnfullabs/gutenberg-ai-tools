@@ -13,7 +13,7 @@ const AIBlock = {
   icon: IconCard,
   edit: Edit,
   save: Save,
-  fetch: FetchOpenAIResponse
+  fetch: FetchOpenAIResponse,
   // deprecated,
 };
 
