@@ -8,7 +8,6 @@ function Save({ attributes }) {
     // eslint-disable-next-line react/jsx-props-no-spreading
     <div {...useBlockProps.save()}>
       <div>
-        <h2>{title}</h2>
         <div>
           <FetchOpenAIResponse question={title} answer={openai_answer} />
           <InnerBlocks.Content />
