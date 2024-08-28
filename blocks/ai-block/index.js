@@ -5,7 +5,6 @@ import Save from "./save";
 import IconCard from "./icon";
 import FetchOpenAIResponse from "./fetch";
 import "./style.scss";
-// import deprecated from "./deprecated";
 
 const AIBlock = {
   ...metadata,
@@ -14,7 +13,6 @@ const AIBlock = {
   edit: Edit,
   save: Save,
   fetch: FetchOpenAIResponse,
-  // deprecated,
 };
 
 export default AIBlock;

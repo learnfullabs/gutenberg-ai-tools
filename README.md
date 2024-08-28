@@ -33,8 +33,6 @@ INSTALLATION
 TODO/BUGS
 -------------
 
-- The answer may take some time, sometimes an extra tab is need to make it appear, there is an issue with the onBlur callback that I have to fix.
-
 - Set up a config page for setting the  options related to how ChatGPT generates its response.
 
 - Improve plugin frontend.
@@ -42,8 +40,6 @@ TODO/BUGS
 - The Block UX needs to be improved, I'll have to hit tab twice in order to get the info, the file edit.js needs to be refactored.
 
 - Reduce the number of API calls.
-
-- When you are editing the Block to ask more than one question, sometimes the previous response gets cached/rendered instead of the new answer, this needs to be fixed.
 
 - Add some kind of wait icon when sending the request to OpenAI and wait for the answer.
 
