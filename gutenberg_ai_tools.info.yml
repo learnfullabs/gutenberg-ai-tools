@@ -7,3 +7,5 @@ configure: 'gutenberg_ai_tools.settings'
 dependencies:
   - 'drupal:openai'
   - 'drupal:gutenberg'
+  - 'drupal:rest'
+  - 'drupal:restui'

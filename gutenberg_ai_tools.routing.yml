@@ -1,0 +1,8 @@
+# General routes for the Group LMS User Sync module.
+gutenberg_ai_tools.settings:
+  path: '/admin/config/openai/gutenberg-ai-settings'
+  defaults:
+    _form: '\Drupal\gutenberg_ai_tools\Form\GutenbergAISettings'
+    _title: 'Gutenberg AI Settings'
+  requirements:
+    _permission: 'use gutenberg'
