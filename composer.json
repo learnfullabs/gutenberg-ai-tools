@@ -18,7 +18,7 @@
     "license": "GPL-2.0-or-later",
     "minimum-stability": "dev",
     "require": {
-      "drupal/core": "^10",
+      "drupal/core": "^9.5 || ^10 || ^11",
       "drupal/restui": "^1.21",
       "drupal/gutenberg": "^3.0",
       "drupal/openai": "^1.0@beta"
